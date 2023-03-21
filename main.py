@@ -1,12 +1,17 @@
 import streamlit as st
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import time
 
 def search_amazon(product_name):
+    # Set up Chrome options for headless mode
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+
     # Set up the webdriver
-    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+    driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
 
     # Navigate to Amazon
     driver.get("https://www.amazon.com/")
